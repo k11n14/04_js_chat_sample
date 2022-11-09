@@ -11,9 +11,17 @@
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
     // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+    // https://firebase.google.com/docs/web/setup#available-libraries 関数集
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp,
+      onSnapshot,
+    } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
 
-    // Your web app's Firebase configuration
+
+    // Your web app's Firebase configuration ユーザー情報
     const firebaseConfig = {
       apiKey: "AIzaSyA3B_HWGL0iUmenL_rqYXIGuwb7GI3XcY4",
       authDomain: "product-chat-app.firebaseapp.com",
@@ -23,13 +31,54 @@
       appId: "1:18199939818:web:969f84ca142f0659fa2593"
     };
 
-    // Initialize Firebase
+    // Initialize Firebase 変数集
     const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // データ取得処理
+    onSnapshot(collection(db, "Product-Chat-App"), (querySnapshot) => {
+      console.log(querySnapshot.docs);
+
+      const Card_Dates = [];
+      querySnapshot.docs.forEach(function (doc) {
+        const Card_Date = {
+          id: doc.id,
+          data: doc.data(),
+        };
+        Card_Dates.push(Card_Date);
+      });
+
+      console.log(Card_Dates);
+      console.log(Card_Dates[0].id);
+      console.log(Card_Dates[0].data);
+      console.log(Card_Dates[0].data.name);
+      console.log(Card_Dates[0].data.cost)
+      console.log(Card_Dates[0].data.text);
+      console.log(Card_Dates[0].data.power);
+      console.log(Card_Dates[0].data.toughness);
+
+
+
+      const htmlElements = [];
+      console.log(htmlElements)
+      Card_Dates.forEach(function (Card_Date) {
+        console.log(Card_Dates[0].data);
+        htmlElements.push(`
+          <div>
+            <p>${Card_Dates[0].data.name}</p>
+            <p>${Card_Dates[0].data.cost}</p>
+            <p>${Card_Dates[0].data.text}</p>
+            <p>${Card_Dates[0].data.power}/${Card_Dates[0].data.toughness}</p>
+          </div>
+         `);
+      });
+      $("#output").html(htmlElements);
+    });
   </script>
 </head>
 
 <body>
-
+  <div id="output"></div>
 </body>
 
 </html>
