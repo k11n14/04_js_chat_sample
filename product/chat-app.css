@@ -1,4 +1,8 @@
 body{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    /* flex-direction: column; */
   /* color: blue; */
 }
 
@@ -11,6 +15,12 @@ body{
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+#My_deck {
+  border: solid;
+    border-color:blue;
+    height: 240px;
+    width: 180px;
 }
 
 .Card{

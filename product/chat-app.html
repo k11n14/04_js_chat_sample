@@ -35,12 +35,15 @@
     // Initialize Firebase 変数集
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
+    const Card_Dates = [];
+    const htmlElements = [];
 
+    
     // データ取得処理
     onSnapshot(collection(db, "Product-Chat-App"), (querySnapshot) => {
       console.log(querySnapshot.docs);
 
-      const Card_Dates = [];
+
       querySnapshot.docs.forEach(function (doc) {
         const Card_Date = {
           id: doc.id,
@@ -50,6 +53,7 @@
       });
 
       console.log(Card_Dates);
+      console.log(Card_Dates.length);
       console.log(Card_Dates[0].id);
       console.log(Card_Dates[0].data);
       console.log(Card_Dates[0].data.name);
@@ -57,10 +61,11 @@
       console.log(Card_Dates[0].data.text);
       console.log(Card_Dates[0].data.power);
       console.log(Card_Dates[0].data.toughness);
+      console.log(Card_Dates[1].data);
 
 
 
-      const htmlElements = [];
+
       console.log(htmlElements)
       Card_Dates.forEach(function (Card_Date) {
         console.log(Card_Dates[0].data);
@@ -71,15 +76,28 @@
             <p>${Card_Date.data.text}</p>
             <p>${Card_Date.data.power}/${Card_Date.data.toughness}</p>
           </div>
-         `);
+        `);
       });
+      // htmlに表示させてる所。
       $("#output").html(htmlElements);
+      console.log(htmlElements)
     });
+
+    $("#My_deck").on("click", function () {
+      // alert("ok")
+      const randomsnumber =  Math.floor(Math.random() * Card_Dates.length)
+
+      console.log(randomsnumber);
+      console.log(Card_Dates[randomsnumber]);
+    });
+
   </script>
+
 </head>
 
 <body>
   <div id="output"></div>
+  <div id="My_deck"></div>
 </body>
 
 </html>
