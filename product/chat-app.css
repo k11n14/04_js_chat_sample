@@ -1,0 +1,18 @@
+body{
+  /* color: blue; */
+}
+
+#output div{
+  border: solid;
+  border-color: red;
+  height: 240px;
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Card{
+  border: solid;
+}
