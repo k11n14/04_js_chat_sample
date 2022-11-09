@@ -37,8 +37,9 @@
     const db = getFirestore(app);
     const Card_Dates = [];
     const htmlElements = [];
+    const Card_Random_create = []
 
-    
+
     // データ取得処理
     onSnapshot(collection(db, "Product-Chat-App"), (querySnapshot) => {
       console.log(querySnapshot.docs);
@@ -54,6 +55,7 @@
 
       console.log(Card_Dates);
       console.log(Card_Dates.length);
+      console.log(Card_Dates[0]);
       console.log(Card_Dates[0].id);
       console.log(Card_Dates[0].data);
       console.log(Card_Dates[0].data.name);
@@ -79,16 +81,24 @@
         `);
       });
       // htmlに表示させてる所。
-      $("#output").html(htmlElements);
+      // $("#output").html(htmlElements);
       console.log(htmlElements)
     });
 
     $("#My_deck").on("click", function () {
       // alert("ok")
-      const randomsnumber =  Math.floor(Math.random() * Card_Dates.length)
+      const randomsnumber = Math.floor(Math.random() * Card_Dates.length)
+      Card_Random_create.push(`
 
+      <p>${Card_Dates[randomsnumber].data.name}</p>
+            <p>${Card_Dates[randomsnumber].data.cost}</p>
+            <p>${Card_Dates[randomsnumber].data.text}</p>
+            <p>${Card_Dates[randomsnumber].data.power}/${Card_Dates[randomsnumber].data.toughness}</p>
+      
+      `);
       console.log(randomsnumber);
       console.log(Card_Dates[randomsnumber]);
+      $("#output").html(Card_Random_create);
     });
 
   </script>
