@@ -27,11 +27,10 @@
       </div>
       <!-- テキスト入力欄を作る❶ -->
       <div>
-        効果: <input type=""
-      </div>
-      <div>
-        <button type="button" id="send">send</button>
-      </div>
+        効果: <input type="" </div>
+        <div>
+          <button type="button" id="send">send</button>
+        </div>
     </fieldset>
   </form>
 
@@ -90,19 +89,21 @@
     const db = getFirestore(app);
 
     // 関数を作ってみる
+    function Registration_field_vall (){
+        const postData = {
+          name: $("#name").val(),
+          text: $("#text").val(),
+          time: serverTimestamp(),
+        };
+        addDoc(collection(db, "chat"), postData);
+        $("#text").val("");
+      }
+    
 
 
     // "#send"をクリックした時、実行される所。
     $("#send").on("click", function () {
-      // 送信時に必要な処理
-      const postData = {
-        name: $("#name").val(),
-        text: $("#text").val(),
-        time: serverTimestamp(),
-      };
-      // addDoc-送信(collection(データベースの,”chat”に）,postDataを);
-      addDoc(collection(db, "chat"), postData);
-      $("#text").val("");
+      Registration_field_vall()
     });
 
 
