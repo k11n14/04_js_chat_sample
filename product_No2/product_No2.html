@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>product_No2</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+  <h1>realtime chat</h1>
+  <!-- 入力場所を作成しよう -->
+  <form>
+    <fieldset>
+      <legend>チャット入力画面</legend>
+      <div>
+        name: <input type="text" id="name">
+      </div>
+      <div>
+        text: <input type="text" id="text">
+      </div>
+      <div>
+        <button type="button" id="send">send</button>
+      </div>
+    </fieldset>
+  </form>
+
+  <!-- データ出力場所 -->
+  <ul id="output"></ul>
+
+  
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    // グーグル先生が用意してくれた便利な関数集
+    import {
+      getFirestore,
+      collection,
+      // データベースに情報送信するで
+      addDoc,
+      // データベースに合うように時間を直すで
+      serverTimestamp,
+      // データに変更（追加，更新，削除など）が生じたタイミングで実行される onSnapshot
+      onSnapshot,
+      // 条件を二つ使う場合は、queryを使う。
+      query,
+      // データのソートには orderBy() を利用
+      orderBy,
+    } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyA3B_HWGL0iUmenL_rqYXIGuwb7GI3XcY4",
+      authDomain: "product-chat-app.firebaseapp.com",
+      projectId: "product-chat-app",
+      storageBucket: "product-chat-app.appspot.com",
+      messagingSenderId: "18199939818",
+      appId: "1:18199939818:web:ae5abd95e2238efefa2593"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    // データベース
+    const db = getFirestore(app);
+  </script>
+
+</body>
+
+</html>

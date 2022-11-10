@@ -18,12 +18,16 @@
   <!-- 入力場所を作成しよう -->
   <form>
     <fieldset>
-      <legend>チャット入力画面</legend>
+      <legend>カード登録</legend>
       <div>
-        name: <input type="text" id="name">
+        カード名: <input type="text" id="name">
       </div>
       <div>
-        text: <input type="text" id="text">
+        マナコスト: <input type="text" id="text">
+      </div>
+      <!-- テキスト入力欄を作る❶ -->
+      <div>
+        効果: <input type=""
       </div>
       <div>
         <button type="button" id="send">send</button>
@@ -126,12 +130,12 @@
       // forEach() メソッドは、与えられた関数を、配列の各要素に対して一度ずつ実行
 
       querySnapshot.docs.forEach(function (doc) {
-        // console.log(doc)
+        console.log(doc)
         const document = {
           id: doc.id,
           data: doc.data(),
         };
-        // console.log(document)
+        console.log(document)
         documents.push(document);
       });
 
