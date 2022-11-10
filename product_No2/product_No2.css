@@ -1,0 +1,16 @@
+#Mydeck{
+  height: 240px;
+  width: 180px;
+  border: solid;
+  border-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: red;
+  background-color: yellow;
+}
+
+#Mydeck p{
+  writing-mode: vertical-rl;
+}
