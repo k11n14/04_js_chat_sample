@@ -23,14 +23,15 @@ body {
   width: 180px;
 }
 
-#My_Hand{
+#My_Hand {
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
+
 #Card {
   border: solid;
-  border-color:red;
+  border-color: red;
   height: 240px;
   width: 180px;
 }

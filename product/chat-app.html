@@ -8,9 +8,9 @@
   <title>Product-Chat-app</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="chat-app.css">
-  
-  
-  
+
+
+
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
@@ -84,20 +84,20 @@
         `);
       });
       // htmlに表示させてる所。
-      // $("#output").html(htmlElements);
+      $("#output").html(htmlElements);
       console.log(htmlElements)
-    
 
-    // デッキをクリックした時、つまりデッキからカードを引いた時
-    $("#My_deck").on("click", function () {
-      // alert("ok")←確認用
-      // カードのデータをランダムに選ぶ所。
-      const randomsnumber = Math.floor(Math.random() * Card_Dates.length)
-      console.log(randomsnumber);
-      // 選ばれたカード↓
-      console.log(Card_Dates[randomsnumber]);
-      // ランダムに選ばれたカードデータををカード表示に直してる所
-      Card_Random_create.push(`
+
+      // デッキをクリックした時、つまりデッキからカードを引いた時
+      $("#My_deck").on("click", function () {
+        // alert("ok")←確認用
+        // カードのデータをランダムに選ぶ所。
+        const randomsnumber = Math.floor(Math.random() * Card_Dates.length)
+        console.log(randomsnumber);
+        // 選ばれたカード↓
+        console.log(Card_Dates[randomsnumber]);
+        // ランダムに選ばれたカードデータををカード表示に直してる所
+        Card_Random_create.push(`
       <div id = Card>
       <p>${Card_Dates[randomsnumber].data.name}</p>
       <p>${Card_Dates[randomsnumber].data.cost}</p>
@@ -105,9 +105,9 @@
       <p>${Card_Dates[randomsnumber].data.power}/${Card_Dates[randomsnumber].data.toughness}</p>
       </div id = Card>
       `);
-      // 手札にカードを表示させてる所
-      $("#My_Hand").html(Card_Random_create);
-    });
+        // 手札にカードを表示させてる所
+        $("#My_Hand").html(Card_Random_create);
+      });
 
     });
   </script>
