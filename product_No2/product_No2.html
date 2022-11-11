@@ -37,6 +37,7 @@
 
     } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
 
+    // ランダムで重複なしで並べ変えできる
     function arrayShuffle(array) {
       for (let i = (array.length - 1); 0 < i; i--) {
 
@@ -52,7 +53,6 @@
 
     }
 
-
     const firebaseConfig = {
       apiKey: "AIzaSyCn--fY825L4EZ8GxDEhBDdQfe2DHRRZ88",
       authDomain: "productno2-987a6.firebaseapp.com",
@@ -65,13 +65,16 @@
     const app = initializeApp(firebaseConfig);
     // Cloud Firestore自体？
     const db = getFirestore(app);
+    const documents = [];
+    const new_documents = [];
+
 
     // データに変更（追加，更新，削除など）が生じたタイミングで実行される onSnapshot()
     onSnapshot(collection(db, "chat"), (querySnapshot) => {
       // Firestore 上に保存されているデータは querySnapshot.docs に入っている．
       console.log(querySnapshot.docs);
       // 空の配列を準備．
-      const documents = [];
+
       // querySnapshot.docs に対して繰り返し処理
       querySnapshot.docs.forEach(function (doc) {
         const document = {
@@ -85,30 +88,38 @@
       console.log(documents[0].data);
       console.log(documents[0].data.name);
       console.log(documents[0].data.text);
+    });
 
-      $("#Mydeck").on("click", function () {
-        // alert("ok")
-        //   const random_new_array = [];
-        //   for(let i = 0 , len = documents.length  ;i< documents.length; i++, len--){
+    $("#Mydeck").on("click", function () {
+      // alert("ok")
+      //   const random_new_array = [];
+      //   for(let i = 0 , len = documents.length  ;i< documents.length; i++, len--){
 
-        //   const rndNum = Math.floor(Math.random() * documents.length);
-        //   console.log(rndNum)
-        //   random_new_array.push(documents[rndNum]);
-        //   console.log(random_new_array);
-        //   // documents[rndNum] = documents[len - 1];
-        //   // console.log(len - 1)
-        //   // console.log(documents[len - 1])
-        // }
-        arrayShuffle(documents)
-        console.log(documents)
-
-
-
-
-
+      //   const rndNum = Math.floor(Math.random() * documents.length);
+      //   console.log(rndNum)
+      //   random_new_array.push(documents[rndNum]);
+      //   console.log(random_new_array);
+      //   // documents[rndNum] = documents[len - 1];
+      //   // console.log(len - 1)
+      //   // console.log(documents[len - 1])
+      // }
+      arrayShuffle(documents)
+      console.log(documents)
+      setDoc(doc(db, "random_array", "new_array"), {
+        documents
       });
+    });
 
-
+    onSnapshot(collection(db, "random_array"), (querySnapshot) => {
+      console.log(querySnapshot.docs);
+      querySnapshot.docs.forEach(function (doc) {
+        const document = {
+          id: doc.id,
+          data: doc.data(),
+        };
+        new_documents.push(document);
+      });
+      console.log(new_documents)
     });
 
   </script>

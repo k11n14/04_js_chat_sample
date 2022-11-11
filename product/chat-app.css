@@ -6,16 +6,16 @@ body {
   /* color: blue; */
 }
 
-/* #output div{
-  border: solid;
+ #output {
+  /* border: solid;
   border-color: red;
   height: 240px;
-  width: 180px;
+  width: 180px; */
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-} */
+  /* flex-direction: column; */
+} 
 #My_deck {
   border: solid;
   border-color: blue;
