@@ -13,31 +13,34 @@
 
   <script type="module">
     // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
     // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries 関数集
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
     import {
-      getFirestore,
-      collection,
-      addDoc,
-      serverTimestamp,
-      onSnapshot,
-    } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
+        getFirestore,
+        collection,
+        addDoc,
+        serverTimestamp,
+        onSnapshot,
+      } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
 
 
-    // Your web app's Firebase configuration ユーザー情報
+    // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyA3B_HWGL0iUmenL_rqYXIGuwb7GI3XcY4",
-      authDomain: "product-chat-app.firebaseapp.com",
-      projectId: "product-chat-app",
-      storageBucket: "product-chat-app.appspot.com",
-      messagingSenderId: "18199939818",
-      appId: "1:18199939818:web:969f84ca142f0659fa2593"
+      apiKey: "AIzaSyCilyG_8rREa49jgLFuBQk2W_kLu6vKAO8",
+      authDomain: "chat-app-422ae.firebaseapp.com",
+      projectId: "chat-app-422ae",
+      storageBucket: "chat-app-422ae.appspot.com",
+      messagingSenderId: "261607142639",
+      appId: "1:261607142639:web:8d31e1c91df60c8514d71a"
     };
 
-    // Initialize Firebase 変数集
+    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+
     const db = getFirestore(app);
+
     const Card_Dates = [];
     const htmlElements = [];
     const Card_Random_create = []

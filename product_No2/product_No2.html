@@ -11,9 +11,9 @@
 </head>
 
 <body>
-<h1 id ="Mydeck">
-  <p>あなたのデッキ</p>
-</h1>
+  <h1 id="Mydeck">
+    <p>あなたのデッキ</p>
+  </h1>
 
   <script type="module">
 
@@ -25,7 +25,33 @@
       addDoc,
       serverTimestamp,
       onSnapshot,
+
+
+      query,
+      orderBy,
+      limit,
+
+      setDoc,
+      updateDoc,
+      doc,
+
     } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
+
+    function arrayShuffle(array) {
+      for (let i = (array.length - 1); 0 < i; i--) {
+
+        // 0〜(i+1)の範囲で値を取得
+        let r = Math.floor(Math.random() * (i + 1));
+
+        // 要素の並び替えを実行
+        let tmp = array[i];
+        array[i] = array[r];
+        array[r] = tmp;
+      }
+      return array;
+
+    }
+
 
     const firebaseConfig = {
       apiKey: "AIzaSyCn--fY825L4EZ8GxDEhBDdQfe2DHRRZ88",
@@ -37,10 +63,52 @@
     };
 
     const app = initializeApp(firebaseConfig);
+    // Cloud Firestore自体？
     const db = getFirestore(app);
 
-    $("#Mydeck").on("click",function(){
-      alert("ok")
+    // データに変更（追加，更新，削除など）が生じたタイミングで実行される onSnapshot()
+    onSnapshot(collection(db, "chat"), (querySnapshot) => {
+      // Firestore 上に保存されているデータは querySnapshot.docs に入っている．
+      console.log(querySnapshot.docs);
+      // 空の配列を準備．
+      const documents = [];
+      // querySnapshot.docs に対して繰り返し処理
+      querySnapshot.docs.forEach(function (doc) {
+        const document = {
+          id: doc.id,
+          data: doc.data(),
+        };
+        documents.push(document);
+      });
+      console.log(documents);
+      console.log(documents[0]);
+      console.log(documents[0].data);
+      console.log(documents[0].data.name);
+      console.log(documents[0].data.text);
+
+      $("#Mydeck").on("click", function () {
+        // alert("ok")
+        //   const random_new_array = [];
+        //   for(let i = 0 , len = documents.length  ;i< documents.length; i++, len--){
+
+        //   const rndNum = Math.floor(Math.random() * documents.length);
+        //   console.log(rndNum)
+        //   random_new_array.push(documents[rndNum]);
+        //   console.log(random_new_array);
+        //   // documents[rndNum] = documents[len - 1];
+        //   // console.log(len - 1)
+        //   // console.log(documents[len - 1])
+        // }
+        arrayShuffle(documents)
+        console.log(documents)
+
+
+
+
+
+      });
+
+
     });
 
   </script>

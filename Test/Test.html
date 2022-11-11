@@ -60,9 +60,39 @@
 <button id="BAKUHATU">芸術は爆発だ！</button>
 
 <script>
-  $("#BAKUHATU").click(function(){
+  $("#BAKUHATU").click(function () {
     alert("爆発")
   });
+</script>
+
+<script>
+
+  function arrayShuffle(array) {
+    // 
+    // console.log(array.length)//5
+    for (var i = (array.length - 1); 0 < i; i--) {
+      // console.log(i)
+      // 0〜(i+1)の範囲で値を取得
+      var r = Math.floor(Math.random() * (i + 1));
+      // console.log(r)
+      // 要素の並び替えを実行
+      var tmp = array[i];
+      // console.log(tmp)
+      array[i] = array[r];
+      // console.log(r)
+      array[r] = tmp;
+      console.log(tmp)
+    }
+    return array;
+
+  }
+
+  var numbers = [1, 2, 3, 4, 5];
+
+  // 配列を5回シャッフルする
+  for (var i = 0; i < 5; i++) {
+    console.log(arrayShuffle(numbers));
+  }
 </script>
 
 <body>
